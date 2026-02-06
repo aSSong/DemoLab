@@ -27,3 +27,13 @@ texture = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=502796978]
 shape = SubResource("RectangleShape2D_v0iea")
+
+[node name="Label" type="Label" parent="." unique_id=550983050]
+offset_left = -64.0
+offset_top = -99.0
+offset_right = 64.0
+offset_bottom = -62.0
+theme_override_font_sizes/font_size = 27
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
