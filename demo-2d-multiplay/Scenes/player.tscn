@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dskkmk870m5i8"]
 
 [ext_resource type="Texture2D" uid="uid://b8bi678fje0jo" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://3pctl8lsvut6" path="res://Scripts/player.gd" id="2_player"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_cvnsp"]
 
@@ -14,21 +15,27 @@ curve = SubResource("Curve_6t5aa")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(128, 126)
 
-[node name="player" type="CharacterBody2D" unique_id=766399148]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sync"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="player" type="CharacterBody2D" unique_id=295829946]
 motion_mode = 1
 platform_on_leave = 2
+script = ExtResource("2_player")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1536764020]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1562989175]
 mesh = SubResource("QuadMesh_cvnsp")
 texture = SubResource("CurveTexture_vgqql")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1673528526]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1591829035]
 texture = ExtResource("1_v0iea")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=502796978]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1240988457]
 shape = SubResource("RectangleShape2D_v0iea")
 
-[node name="Label" type="Label" parent="." unique_id=550983050]
+[node name="Label" type="Label" parent="." unique_id=679378763]
 offset_left = -64.0
 offset_top = -99.0
 offset_right = 64.0
@@ -37,3 +44,6 @@ theme_override_font_sizes/font_size = 27
 text = "Player 1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1476555975]
+replication_config = SubResource("SceneReplicationConfig_sync")
