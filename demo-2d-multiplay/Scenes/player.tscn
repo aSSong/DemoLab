@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dskkmk870m5i8"]
+
+[ext_resource type="Texture2D" uid="uid://b8bi678fje0jo" path="res://icon.svg" id="1_v0iea"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_cvnsp"]
+
+[sub_resource type="Curve" id="Curve_6t5aa"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_vgqql"]
+curve = SubResource("Curve_6t5aa")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
+size = Vector2(128, 126)
+
+[node name="player" type="CharacterBody2D" unique_id=766399148]
+motion_mode = 1
+platform_on_leave = 2
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1536764020]
+mesh = SubResource("QuadMesh_cvnsp")
+texture = SubResource("CurveTexture_vgqql")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1673528526]
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=502796978]
+shape = SubResource("RectangleShape2D_v0iea")

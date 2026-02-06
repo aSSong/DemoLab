@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://djocbn5yj4npy"]
+
+[node name="main" type="Node2D" unique_id=581206330]
+
+[node name="bg" type="ColorRect" parent="." unique_id=1033813104]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25882354, 0.45490196, 0.6, 1)
