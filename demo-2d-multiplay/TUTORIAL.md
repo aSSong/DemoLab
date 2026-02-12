@@ -75,9 +75,9 @@ demo-2d-multiplay/
 │   ├── main.tscn              # 游戏场景 — 蓝色背景 + Players 容器节点
 │   └── player.tscn            # 玩家场景 — CharacterBody2D + 同步器
 └── Scripts/
-    ├── lobby.gd               # 大厅逻辑 — 网络连接、玩家管理、RPC 开始游戏
-    ├── main.gd                # 游戏逻辑 — 根据 peer 列表生成玩家实例
-    └── player.gd              # 玩家逻辑 — 权限判断、输入处理、移动
+	├── lobby.gd               # 大厅逻辑 — 网络连接、玩家管理、RPC 开始游戏
+	├── main.gd                # 游戏逻辑 — 根据 peer 列表生成玩家实例
+	└── player.gd              # 玩家逻辑 — 权限判断、输入处理、移动
 ```
 
 ### 场景节点树
@@ -86,20 +86,20 @@ demo-2d-multiplay/
 ```
 lobby (Control) ← 挂载 lobby.gd
   └─ MarginContainer
-       └─ VBoxContainer
-            ├─ TitleLabel          "2D 局域网联机 Demo"
-            ├─ HSeparator
-            ├─ IPContainer (HBox)
-            │    ├─ IPLabel        "服务器IP:"
-            │    └─ IPInput        LineEdit, 默认 "127.0.0.1"
-            ├─ ButtonContainer (HBox)
-            │    ├─ CreateButton   "创建服务器"
-            │    └─ JoinButton     "加入游戏"
-            ├─ HSeparator2
-            ├─ PlayerListLabel     "玩家列表:"
-            ├─ PlayerList          ItemList (显示已连接玩家)
-            ├─ StartButton         "开始游戏" (默认隐藏)
-            └─ StatusLabel         状态提示文字
+	   └─ VBoxContainer
+			├─ TitleLabel          "2D 局域网联机 Demo"
+			├─ HSeparator
+			├─ IPContainer (HBox)
+			│    ├─ IPLabel        "服务器IP:"
+			│    └─ IPInput        LineEdit, 默认 "127.0.0.1"
+			├─ ButtonContainer (HBox)
+			│    ├─ CreateButton   "创建服务器"
+			│    └─ JoinButton     "加入游戏"
+			├─ HSeparator2
+			├─ PlayerListLabel     "玩家列表:"
+			├─ PlayerList          ItemList (显示已连接玩家)
+			├─ StartButton         "开始游戏" (默认隐藏)
+			└─ StatusLabel         状态提示文字
 ```
 
 **main.tscn:**
@@ -128,13 +128,13 @@ player (CharacterBody2D) ← 挂载 player.gd
 Godot 4 的多人游戏采用 **客户端/服务器 (Client/Server)** 架构：
 
 ```
-        ┌──────────┐
-        │  服务器    │  peer_id = 1 (固定)
-        │  (主机)    │  既是服务器，也是一个玩家
-        └─────┬────┘
-              │
-    ┌─────────┼─────────┐
-    │         │         │
+		┌──────────┐
+		│  服务器    │  peer_id = 1 (固定)
+		│  (主机)    │  既是服务器，也是一个玩家
+		└─────┬────┘
+			  │
+	┌─────────┼─────────┐
+	│         │         │
 ┌───┴──┐ ┌───┴──┐ ┌───┴──┐
 │客户端1│ │客户端2│ │客户端3│
 │id=随机│ │id=随机│ │id=随机│
@@ -175,8 +175,8 @@ player_node.set_multiplayer_authority(peer_id)
 
 # 判断"我"是否是这个节点的权限拥有者
 if player_node.is_multiplayer_authority():
-    # 只有权限拥有者才能控制这个节点
-    pass
+	# 只有权限拥有者才能控制这个节点
+	pass
 ```
 
 **默认 authority 是 1（服务器）**。如果不手动设置，所有节点的权限都归服务器。
@@ -193,7 +193,7 @@ RPC 让你在一台机器上调用函数，其他机器也执行同一个函数�
 # 第一步：用 @rpc 注解声明函数
 @rpc("authority", "call_local", "reliable")
 func start_game() -> void:
-    get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 # 第二步：用 .rpc() 调用
 start_game.rpc()           # 对所有人调用
@@ -220,7 +220,7 @@ MultiplayerSynchronizer 是 Godot 4 提供的自动属性同步节点，**无需
 节点结构:
 player (CharacterBody2D)
   └─ MultiplayerSynchronizer
-       └─ 配置: 同步 position 属性, replication_mode = Always
+	   └─ 配置: 同步 position 属性, replication_mode = Always
 ```
 
 **工作原理：** authority 拥有者修改 position → Synchronizer 自动将新值通过网络发给所有其他 peer → 其他 peer 上的同名节点自动更新 position。
@@ -305,17 +305,17 @@ SceneReplicationConfig:
   ENetMultiplayerPeer.create_server(9999)
   multiplayer.multiplayer_peer = peer
   玩家列表: [1]
-                                      输入 IP, 点击"加入游戏"
-                                      ENetMultiplayerPeer.create_client(ip, 9999)
-                                      multiplayer.multiplayer_peer = peer
-                                          │
-                                          ▼
-                                      connected_to_server 信号触发
-                                      → 添加自己到列表
-                                          │
-            ◄─────── 网络连接建立 ─────────┤
-            │                             │
-            ▼                             ▼
+									  输入 IP, 点击"加入游戏"
+									  ENetMultiplayerPeer.create_client(ip, 9999)
+									  multiplayer.multiplayer_peer = peer
+										  │
+										  ▼
+									  connected_to_server 信号触发
+									  → 添加自己到列表
+										  │
+			◄─────── 网络连接建立 ─────────┤
+			│                             │
+			▼                             ▼
   peer_connected(客户端id) 触发      peer_connected(1) 触发
   → 添加客户端到列表                → 添加服务器到列表
   → 启用"开始游戏"按钮
@@ -323,8 +323,8 @@ SceneReplicationConfig:
 
   点击"开始游戏"
   start_game.rpc()
-            │                             │
-            ▼                             ▼
+			│                             │
+			▼                             ▼
   start_game() 本地执行              start_game() 远程执行
   change_scene_to_file(main)         change_scene_to_file(main)
 
@@ -431,14 +431,14 @@ SceneReplicationConfig:
 ```gdscript
 # ❌ 错误做法
 func _ready():
-    if is_multiplayer_authority():  # 此时 authority 还没设置!
-        label.text += " (你)"
+	if is_multiplayer_authority():  # 此时 authority 还没设置!
+		label.text += " (你)"
 
 # ✅ 正确做法
 func _ready():
-    var peer_id = str(name).to_int()
-    if peer_id == multiplayer.get_unique_id():  # 用节点名(=peer_id)比较
-        label.text += " (你)"
+	var peer_id = str(name).to_int()
+	if peer_id == multiplayer.get_unique_id():  # 用节点名(=peer_id)比较
+		label.text += " (你)"
 ```
 
 **原因：** `add_child()` 触发 `_ready()`，而 `set_multiplayer_authority()` 在 `add_child()` 之后才调用。默认 authority=1，所以服务器上所有节点的 `is_multiplayer_authority()` 都会返回 `true`。
@@ -473,12 +473,12 @@ player.name = "Player_" + str(index)
 ```gdscript
 # ❌ 错误：无去重，可能添加两次
 func _on_peer_connected(id):
-    players.append(id)
+	players.append(id)
 
 # ✅ 正确：先检查是否已存在
 func _on_peer_connected(id):
-    if not players.has(id):
-        players.append(id)
+	if not players.has(id):
+		players.append(id)
 ```
 
 ### 5. 场景切换不会断开连接
