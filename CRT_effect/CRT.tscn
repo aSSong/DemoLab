@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://do7xi03da5qs2"]
+
+[ext_resource type="Texture2D" uid="uid://dqm64tyrlayhb" path="res://视频标题.png" id="1_0bk2h"]
+[ext_resource type="Script" uid="uid://cs2yiep47c0ox" path="res://crt.gd" id="1_wsrqv"]
+[ext_resource type="Shader" uid="uid://cwgtjw5jly5qb" path="res://CRT.gdshader" id="2_34fja"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34fja"]
+shader = ExtResource("2_34fja")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.013
+shader_parameter/scanlines_width = 0.2
+shader_parameter/grille_opacity = 0.050000002375
+shader_parameter/resolution = Vector2(320, 240)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.019000048402499914
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.396
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.768
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wsrqv"]
+shader = ExtResource("2_34fja")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1080, 720)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 0.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.094
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/vignette_opacity = 0.728
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_syxjy"]
+shader = ExtResource("2_34fja")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(320, 240)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 16.107
+shader_parameter/roll_variation = 0.692
+shader_parameter/distort_intensity = 0.005
+shader_parameter/noise_opacity = 0.259
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.073
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.101
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.5
+shader_parameter/vignette_opacity = 0.698
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1056502961]
+script = ExtResource("1_wsrqv")
+
+[node name="原始效果" type="TextureRect" parent="." unique_id=1119024636]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0bk2h")
+expand_mode = 1
+
+[node name="效果1" type="ColorRect" parent="." unique_id=23173718]
+material = SubResource("ShaderMaterial_34fja")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="效果2" type="ColorRect" parent="." unique_id=518698574]
+visible = false
+material = SubResource("ShaderMaterial_wsrqv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="效果3" type="ColorRect" parent="." unique_id=921808308]
+material = SubResource("ShaderMaterial_syxjy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
