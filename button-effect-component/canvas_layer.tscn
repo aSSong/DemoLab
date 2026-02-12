@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c5isgr1n86lsb"]
+
+[ext_resource type="Script" uid="uid://5hk08e65fqg8" path="res://button_effects_module.gd" id="1_v2lfg"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1202834074]
+
+[node name="Button" type="Button" parent="." unique_id=1714361644]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 544.0
+offset_top = 200.0
+offset_right = 584.0
+offset_bottom = 231.0
+text = "按钮"
+
+[node name="ButtonEffectsModule" type="Node" parent="Button" unique_id=947513080]
+script = ExtResource("1_v2lfg")
+metadata/_custom_type_script = "uid://5hk08e65fqg8"
