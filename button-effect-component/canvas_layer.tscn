@@ -15,3 +15,15 @@ text = "按钮"
 [node name="ButtonEffectsModule" type="Node" parent="Button" unique_id=947513080]
 script = ExtResource("1_v2lfg")
 metadata/_custom_type_script = "uid://5hk08e65fqg8"
+
+[node name="Button2" type="Button" parent="." unique_id=2018641946]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 544.0
+offset_top = 278.0
+offset_right = 744.0
+offset_bottom = 309.0
+text = "按钮"
+
+[node name="ButtonEffectsModule" type="Node" parent="Button2" unique_id=1878370289]
+script = ExtResource("1_v2lfg")
+metadata/_custom_type_script = "uid://5hk08e65fqg8"
